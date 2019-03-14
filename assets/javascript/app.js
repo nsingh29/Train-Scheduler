@@ -3,6 +3,7 @@
 $(document).ready(function(){
 // initialize database
 
+var schedule = new Firebase("https://trainscheduler-ac14c.firebaseio.com");
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyAdya4XVdR7HIlXogL9PkRxjzGPJA9bkUM",
@@ -27,12 +28,12 @@ var firstTrain;
 $("#add-train").on("click", function() {
     event.preventDefault();
     name = $("#Train-Name").val().trim();
-    destination = $("#Destination").val().trim();
-    firstTrain = $("#First-Train-Name").val().trim();
-    frequency = $("#Frequency").val().trim();
+    destination = $("#destination").val().trim();
+    firstTrain = $("first-train").val().trim();
+    frequency = $("#frequency").val().trim();
 
     // pushing data
-        database.ref().push({
+        database.schedule().push({
         name: name,
         destination: destination,
         firstTrain: firstTrain,
@@ -40,4 +41,5 @@ $("#add-train").on("click", function() {
         dateAdded: firebase.database.ServerValue.TIMESTAMP
     });
     $("form")[0].reset();
-})
+});
+});
